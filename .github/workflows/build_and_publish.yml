@@ -1,0 +1,57 @@
+# Build and publish
+
+name: Documentation
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+
+    build_documentation:
+        name: Build Documentation
+        runs-on: ubuntu-20.04
+
+        permissions:
+          deployments: write
+          contents: write
+
+        steps:
+        - uses: actions/checkout@v4
+        - name: Configure Git Credentials
+          run: |
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+        - uses: actions/setup-python@v5
+          with:
+            python-version: "3.11"
+            cache: "pip"
+
+        - name: Install necessary packages
+          run: |
+            pip install -r requirements.txt
+            pip install -r requirements_doc.txt
+
+        # https://github.com/pyvista/setup-headless-display-action
+        - name: Setup headless display
+          uses: pyvista/setup-headless-display-action@v2
+
+        - name: build documentation (pull request or push)
+          run: |
+            sphinx-build -b html doc _build/
+
+
+        - name: Deploy to GitHub Pages
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            publish_branch: gh-pages
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: _build/
+            force_orphan: true
