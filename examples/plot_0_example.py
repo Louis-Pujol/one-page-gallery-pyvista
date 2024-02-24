@@ -33,7 +33,7 @@ plotter.open_gif("file.gif", fps=3)
 for i in range(len(bunnies)):
     plotter.clear_actors()
     plotter.add_mesh(
-        bunnies
+        bunnies[i]
     )
     plotter.write_frame()
 
