@@ -1,0 +1,17 @@
+# Sphinx + theme/plugins
+sphinx
+furo
+myst_parser
+sphinx-copybutton
+sphinx-gallery
+sphinx-design
+
+# To generate interactive scenes
+ipython
+jupyterlab
+trame
+trame_vtk
+trame_vuetify
+
+# To generate GIFs
+imageio
