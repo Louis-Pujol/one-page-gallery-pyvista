@@ -12,6 +12,7 @@ This examples demonstrates how to show static/interactive and animated pyvista s
 #
 
 # %%
+
 import pyvista as pv
 from pyvista import examples
 
@@ -25,6 +26,7 @@ bunny.plot()
 #
 
 # %%
+
 target_reductions = [0, 0.5, 0.9, 0.95]
 bunnies = [bunny.decimate(tr) for tr in target_reductions]
 

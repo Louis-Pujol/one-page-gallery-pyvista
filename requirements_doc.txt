@@ -1,3 +1,5 @@
+pyyaml
+
 # Sphinx + theme/plugins
 sphinx
 furo

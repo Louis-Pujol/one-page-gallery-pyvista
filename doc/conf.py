@@ -1,6 +1,19 @@
 from __future__ import annotations
 import importlib.metadata
 
+import yaml
+
+with open("../configuration.yml", 'r') as file:
+    config = yaml.safe_load(file)
+
+
+project = config["project"]
+copyright = config["copyright"]
+author = config["author"]
+version = release = ""
+html_title = config["html_title"]
+
+
 with open("../requirements.txt") as f:
     skshapes_version = f.readline().replace(" ", "")
 
@@ -58,11 +71,7 @@ class ResetPyVista:
 reset_pyvista = ResetPyVista()
 
 
-project = "Scikit Shapes tutorial"
-copyright = "2024, Louis Pujol"
-author = "Louis Pujol"
-version = release = ""
-html_title = "Scikit-shapes tutorial"
+
 
 extensions = [
     # 'sphinx_tabs.tabs',
