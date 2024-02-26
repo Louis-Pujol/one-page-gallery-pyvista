@@ -1,8 +1,8 @@
 """
-Example gallery
-===============
+Basic plotting
+==============
 
-This examples demonstrates how to show static/interactive and animated pyvista scenes
+This examples demonstrates how to show static/interactive and animated pyvista scenes.
 """
 
 
@@ -46,4 +46,3 @@ for i in range(len(colors)):
     plotter.write_frame()
 
 plotter.show()
-
